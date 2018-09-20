@@ -310,14 +310,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Returns a CGPoint value to offset the user location annotation, relative to
- the camera's center coordinate.
+ the the map view's origin.
  
  This method will offset the user location annotation by the specified
  X and Y values determined by the CGPoint.
  
  @param mapView The map view that is tracking the user's location.
  */
-- (CGPoint)userLocationAnchorForMapView:(MGLMapView *)mapView;
+- (CGPoint)mapViewUserLocationAnchorPoint:(MGLMapView *)mapView;
 
 #pragma mark Managing the Appearance of Annotations
 
