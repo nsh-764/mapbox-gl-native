@@ -416,7 +416,7 @@ MGL_EXPORT IB_DESIGNABLE
  transition. If you don’t want to animate the change, use the
  `-setUserLocationVerticalAlignment:animated:` method instead.
  */
-@property (nonatomic, assign) MGLAnnotationVerticalAlignment userLocationVerticalAlignment __attribute__((deprecated("Use -userLocationAnchorForMapView delegate method instead.")));
+@property (nonatomic, assign) MGLAnnotationVerticalAlignment userLocationVerticalAlignment __attribute__((deprecated("Use -[MGLMapViewDelegate mapViewUserLocationAnchorPoint:] instead.")));
 
 /**
  Sets the vertical alignment of the user location annotation within the
@@ -427,7 +427,7 @@ MGL_EXPORT IB_DESIGNABLE
     position within the map view. If `NO`, the user location annotation
     instantaneously moves to its new position.
  */
-- (void)setUserLocationVerticalAlignment:(MGLAnnotationVerticalAlignment)alignment animated:(BOOL)animated;
+- (void)setUserLocationVerticalAlignment:(MGLAnnotationVerticalAlignment)alignment animated:(BOOL)animated __attribute__((deprecated("Use -[MGLMapViewDelegate mapViewUserLocationAnchorPoint:] instead.")));;
 
 /**
  A Boolean value indicating whether the user location annotation may display a
