@@ -5994,25 +5994,23 @@ public:
         contentFrame = self.contentFrame;
     }
     CGPoint center = CGPointMake(CGRectGetMidX(contentFrame), CGRectGetMidY(contentFrame));
-
-    // When tracking course, it’s more important to see the road ahead, so
-    // weight the user dot down towards the bottom.
-//    switch (self.userLocationVerticalAlignment) {
-//        case MGLAnnotationVerticalAlignmentCenter:
-//            break;
-//        case MGLAnnotationVerticalAlignmentTop:
-//            center.y = CGRectGetMinY(contentFrame);
-//            break;
-//        case MGLAnnotationVerticalAlignmentBottom:
-//            center.y = CGRectGetMaxY(contentFrame);
-//            break;
-//    }
     
-    if ([self.delegate respondsToSelector:@selector(userLocationAnchorForMapView:)])
+    if ([self.delegate respondsToSelector:@selector(mapViewUserLocationAnchorPoint:)])
     {
-        // Get whatever value is returned from the delegate method that responds to
-        // the selector and assign it to the center
-        center = [self.delegate userLocationAnchorForMapView:self];
+        center = [self.delegate mapViewUserLocationAnchorPoint:self];
+    }
+
+//     When tracking course, it’s more important to see the road ahead, so
+//     weight the user dot down towards the bottom.
+    switch (self.userLocationVerticalAlignment) {
+        case MGLAnnotationVerticalAlignmentCenter:
+            break;
+        case MGLAnnotationVerticalAlignmentTop:
+            center.y = CGRectGetMinY(contentFrame);
+            break;
+        case MGLAnnotationVerticalAlignmentBottom:
+            center.y = CGRectGetMaxY(contentFrame);
+            break;
     }
 
     return center;
