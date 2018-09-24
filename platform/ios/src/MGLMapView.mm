@@ -5999,19 +5999,17 @@ public:
     {
         CGPoint anchorPoint = [self.delegate mapViewUserLocationAnchorPoint:self];
         center = CGPointMake((contentFrame.origin.x + anchorPoint.x), (contentFrame.origin.y + anchorPoint.y));
-    }
-
-//     When tracking course, it’s more important to see the road ahead, so
-//     weight the user dot down towards the bottom.
-    switch (self.userLocationVerticalAlignment) {
-        case MGLAnnotationVerticalAlignmentCenter:
-            break;
-        case MGLAnnotationVerticalAlignmentTop:
-            center.y = CGRectGetMinY(contentFrame);
-            break;
-        case MGLAnnotationVerticalAlignmentBottom:
-            center.y = CGRectGetMaxY(contentFrame);
-            break;
+    } else {
+        switch (self.userLocationVerticalAlignment) {
+            case MGLAnnotationVerticalAlignmentCenter:
+                break;
+            case MGLAnnotationVerticalAlignmentTop:
+                center.y = CGRectGetMinY(contentFrame);
+                break;
+            case MGLAnnotationVerticalAlignmentBottom:
+                center.y = CGRectGetMaxY(contentFrame);
+                break;
+        }
     }
 
     return center;
