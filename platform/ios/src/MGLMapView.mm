@@ -5997,7 +5997,8 @@ public:
     
     if ([self.delegate respondsToSelector:@selector(mapViewUserLocationAnchorPoint:)])
     {
-        center = [self.delegate mapViewUserLocationAnchorPoint:self];
+        CGPoint anchorPoint = [self.delegate mapViewUserLocationAnchorPoint:self];
+        center = CGPointMake((contentFrame.origin.x + anchorPoint.x), (contentFrame.origin.y + anchorPoint.y));
     }
 
 //     When tracking course, it’s more important to see the road ahead, so
