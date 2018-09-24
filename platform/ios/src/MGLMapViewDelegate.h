@@ -310,7 +310,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Returns a CGPoint value to offset the user location annotation, relative to
- the the map view's origin.
+ the the map view's content insets.
  
  This method will offset the user location annotation by the specified
  X and Y values determined by the CGPoint.
