@@ -25,8 +25,23 @@ MGL_EXPORT
  */
 @property (nonatomic) CGFloat pitch;
 
-/** Meters above ground level. */
+/**
+ The altitude (measured in meters) above the map at which the camera is
+ situated.
+ 
+ This property’s value may be less than that of the `viewingDistance` property.
+ Setting this property automatically updates the `viewingDistance` property
+ based on the `pitch` property’s current value.
+ */
 @property (nonatomic) CLLocationDistance altitude;
+
+/**
+ The straight-line distance from the viewpoint to the `centerCoordinate`.
+ 
+ Setting this property automatically updates the `altitude` property based on
+ the `pitch` property’s current value.
+ */
+@property (nonatomic) CLLocationDistance viewingDistance;
 
 /** Returns a new camera with all properties set to 0. */
 + (instancetype)camera;
