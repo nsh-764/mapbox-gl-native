@@ -5273,9 +5273,9 @@ public:
                                                    correctPoint.x - CGRectGetMidX(bounds),
                                                    correctPoint.y - CGRectGetMidY(bounds));
     return UIEdgeInsetsMake(CGRectGetMinY(boundsAroundCorrectPoint) - CGRectGetMinY(bounds),
-                            self.contentInset.left,
+                            CGRectGetMaxX(boundsAroundCorrectPoint) - CGRectGetMaxX(bounds),
                             CGRectGetMaxY(bounds) - CGRectGetMaxY(boundsAroundCorrectPoint),
-                            self.contentInset.right);
+                            CGRectGetMaxX(bounds) - CGRectGetMaxX(boundsAroundCorrectPoint));
 }
 
 /// Returns the edge padding to apply during bifocal course tracking.
