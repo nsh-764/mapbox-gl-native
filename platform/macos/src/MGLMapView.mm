@@ -1319,7 +1319,7 @@ public:
                                                           centerCoordinate.latitude,
                                                           self.frame.size);
     return [MGLMapCamera cameraLookingAtCenterCoordinate:centerCoordinate
-                                            fromDistance:altitude
+                                                altitude:altitude
                                                    pitch:pitch
                                                  heading:direction];
 }
