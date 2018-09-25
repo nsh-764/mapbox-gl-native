@@ -23,3 +23,7 @@ If you have implemented custom opt-out of Mapbox Telemetry within the user inter
 ## MGLIdeographicFontFamilyName
 
 The name of the font family to use for client-side text rendering of CJK ideographs. Set this to the name of a font family which will be available at run time, e.g. `PingFang TC` (iOS 9+), `Heiti TC` (iOS 8+), another appropriate built-in font, or a font provided by your application. Note that if a non-existent font is specified, iOS will fall back to using Helvetica which is likely not to include support for the glyphs needed to render maps in your application.
+
+## MGLCollisionBehaviorPre4_0
+
+If enabled symbol layers will only run legacy collision detection against other symbol layers that are part of the same source. Symbols in different sources, such as Streets versus a shape source, may overlap unexpectedly.
