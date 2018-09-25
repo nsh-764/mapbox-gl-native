@@ -5988,30 +5988,32 @@ public:
 /// the overall map view (but respecting the content inset).
 - (CGPoint)userLocationAnnotationViewCenter
 {
+    if ([self.delegate respondsToSelector:@selector(mapViewUserLocationAnchorPoint:)])
+    {
+        CGPoint anchorPoint = [self.delegate mapViewUserLocationAnchorPoint:self];
+        return CGPointMake(anchorPoint.x + self.contentInset.left, anchorPoint.y + self.contentInset.top);
+    }
+    
     CGRect contentFrame = UIEdgeInsetsInsetRect(self.contentFrame, self.edgePaddingForFollowingWithCourse);
+    
     if (CGRectIsEmpty(contentFrame))
     {
         contentFrame = self.contentFrame;
     }
+    
     CGPoint center = CGPointMake(CGRectGetMidX(contentFrame), CGRectGetMidY(contentFrame));
     
-    if ([self.delegate respondsToSelector:@selector(mapViewUserLocationAnchorPoint:)])
-    {
-        CGPoint anchorPoint = [self.delegate mapViewUserLocationAnchorPoint:self];
-        center = CGPointMake((contentFrame.origin.x + anchorPoint.x), (contentFrame.origin.y + anchorPoint.y));
-    } else {
-        switch (self.userLocationVerticalAlignment) {
-            case MGLAnnotationVerticalAlignmentCenter:
-                break;
-            case MGLAnnotationVerticalAlignmentTop:
-                center.y = CGRectGetMinY(contentFrame);
-                break;
-            case MGLAnnotationVerticalAlignmentBottom:
-                center.y = CGRectGetMaxY(contentFrame);
-                break;
-        }
+    switch (self.userLocationVerticalAlignment) {
+        case MGLAnnotationVerticalAlignmentCenter:
+            break;
+        case MGLAnnotationVerticalAlignmentTop:
+            center.y = CGRectGetMinY(contentFrame);
+            break;
+        case MGLAnnotationVerticalAlignmentBottom:
+            center.y = CGRectGetMaxY(contentFrame);
+            break;
     }
-
+    
     return center;
 }
 
