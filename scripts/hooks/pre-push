@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+source "$(dirname ${BASH_SOURCE[0]})/common.sh"
+
+echo -n "Checking code formatting..."
+RESULT=$(scripts/nitpick/format.js)
+if [ ! -z "$RESULT" ]; then
+    read -p " Found deviations. Do you want to see them? [y/N] " SHOW
+    case "$SHOW" in [yY]|[yY][eE][sS]) echo "$RESULT" ; exit 1 ;; esac
+    read -p "Do you want to continue pushing? [Y/n] " CONTINUE
+    case "$CONTINUE" in [nN]|[oO]) exit 1 ;; esac
+fi
